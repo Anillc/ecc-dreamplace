@@ -1,6 +1,6 @@
 [build-system]
-requires = ["uv_build>=0.10.9,<0.12"]
-build-backend = "uv_build"
+requires = ["scikit-build-core", "torch"]
+build-backend = "scikit_build_core.build"
 
 [project]
 name = "ecc-dreamplace"
@@ -26,17 +26,18 @@ dependencies = [
   "xgboost>=1.5.1",
 ]
 
-[tool.uv.build-backend]
-module-name = "dreamplace"
-module-root = ""
-wheel-include = [
-  "thirdparty/NCTUgr.ICCAD2012/**",
-  "thirdparty/flute/lut.ICCAD2015/**",
-]
+[tool.scikit-build]
+cmake.define.PYTHON_EXECUTABLE = "python3"
+cmake.define.CMAKE_CXX_ABI = 1
+sdist.include = ["thirdparty/pybind11/include/pybind11", "unittest"]
+build.verbose = true
+editable.rebuild = true
+build-dir = "build"
 
 [dependency-groups]
 dev = [
   "auditwheel",
+  "scikit-build-core>=0.12.2",
 ]
 
 [tool.black]
