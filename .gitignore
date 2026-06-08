@@ -26,4 +26,5 @@ unittest
 # Bazel
 bazel-*
 
-/.direnv
+.direnv
+result
