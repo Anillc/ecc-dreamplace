@@ -23,4 +23,5 @@ unittest
 .cache
 *_unittest
 
-/.direnv
+.direnv
+result
