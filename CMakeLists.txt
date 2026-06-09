@@ -16,6 +16,14 @@ if(NOT CMAKE_BUILD_TYPE)
 endif(NOT CMAKE_BUILD_TYPE)
 message(STATUS "CMAKE_BUILD_TYPE: ${CMAKE_BUILD_TYPE}")
 
+# build x86_64 instead of x86_64_v2 which will cause auditwheel to fail
+add_compile_options(
+    "$<$<COMPILE_LANGUAGE:C>:-march=x86-64>"
+    "$<$<COMPILE_LANGUAGE:C>:-mtune=generic>"
+    "$<$<COMPILE_LANGUAGE:CXX>:-march=x86-64>"
+    "$<$<COMPILE_LANGUAGE:CXX>:-mtune=generic>"
+)
+
 # This is a dirty fix for CMake on some machines that generates default CXX standard and override the custom settings, 
 # because CUDA does not support C++17 and higher. 
 # You can check the CMAKE_CXX_FLAGS in CMakeCache.txt to verify the issue. 
