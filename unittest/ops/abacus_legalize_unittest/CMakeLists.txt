@@ -6,7 +6,3 @@ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 add_executable(abacus_unittest ${SOURCES})
 target_link_libraries(abacus_unittest utility_cxx)
-
-install(
-    TARGETS abacus_unittest DESTINATION unittest/ops/abacus_legalize_unittest
-    )
